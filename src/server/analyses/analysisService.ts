@@ -2,7 +2,7 @@ import { AnalysisRecord } from '../../types/analysis';
 import fs from 'fs';
 import path from 'path';
 
-const ANALYSES_DIR = path.join(process.cwd(), 'data', 'analyses');
+const ANALYSES_DIR = process.env.ANALYSES_DIR || (process.env.VERCEL ? path.join('/tmp', 'datalens_data', 'analyses') : path.join(process.cwd(), 'data', 'analyses'));
 
 function ensureAnalysesDir(ownerId?: string) {
   try {

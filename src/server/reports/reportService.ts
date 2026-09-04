@@ -7,7 +7,7 @@ import fs from 'fs';
 import path from 'path';
 import crypto from 'crypto';
 
-const REPORTS_DIR = path.join(process.cwd(), 'data', 'reports');
+const REPORTS_DIR = process.env.REPORTS_DIR || (process.env.VERCEL ? path.join('/tmp', 'datalens_data', 'reports') : path.join(process.cwd(), 'data', 'reports'));
 
 export interface DatasetReport {
   reportId: string;

@@ -10,7 +10,7 @@ export const MAX_ROWS_LIMIT = 1_000_000;
 export const MAX_COLS_LIMIT = 1_000;
 export const MAX_PREVIEW_ROWS = 50;
 
-const DATA_DIR = path.join(process.cwd(), 'data', 'datasets');
+const DATA_DIR = process.env.DATA_DIR || (process.env.VERCEL ? path.join('/tmp', 'datalens_data', 'datasets') : path.join(process.cwd(), 'data', 'datasets'));
 
 function ensureDataDir(ownerId?: string) {
   try {
