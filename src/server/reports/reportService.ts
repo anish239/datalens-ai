@@ -152,6 +152,11 @@ function removeReportFromDisk(ownerId: string, reportId: string) {
   }
 }
 
+export function saveUserReport(report: DatasetReport): void {
+  inMemoryReportStore.set(report.reportId, report);
+  saveReportToDisk(report.ownerId, report);
+}
+
 export function listUserReports(ownerId: string): DatasetReport[] {
   const reports: DatasetReport[] = [];
   for (const report of inMemoryReportStore.values()) {
@@ -179,6 +184,29 @@ export function deleteReport(reportId: string, ownerId: string): boolean {
   }
   removeReportFromDisk(ownerId, reportId);
   return inMemoryReportStore.delete(reportId);
+}
+
+export function clearUserReports(ownerId?: string): void {
+  if (ownerId) {
+    for (const [id, rep] of inMemoryReportStore.entries()) {
+      if (rep.ownerId === ownerId) {
+        removeReportFromDisk(ownerId, id);
+        inMemoryReportStore.delete(id);
+      }
+    }
+  } else {
+    inMemoryReportStore.clear();
+  }
+}
+
+export function countUserReports(ownerId: string): number {
+  let count = 0;
+  for (const report of inMemoryReportStore.values()) {
+    if (report.ownerId === ownerId) {
+      count++;
+    }
+  }
+  return count;
 }
 
 export async function generateDatasetReport(datasetId: string, ownerId: string): Promise<DatasetReport> {

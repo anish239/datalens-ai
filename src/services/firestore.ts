@@ -3,6 +3,7 @@ import {
   getDoc,
   setDoc,
   updateDoc,
+  deleteDoc,
   serverTimestamp,
   collection,
   query,
@@ -722,4 +723,70 @@ export async function getUserAnalyses(uid: string, datasetId?: string): Promise<
   }
 
   return localAnalyses;
+}
+
+/**
+ * Saves a report record to Firestore under `reports/{reportId}` with local fallback.
+ */
+export async function saveReportRecord(report: any): Promise<void> {
+  if (!report || !report.reportId || !report.ownerId) {
+    throw new Error('Invalid report record: missing reportId or ownerId.');
+  }
+
+  const cleanData: Record<string, any> = {};
+  for (const [k, v] of Object.entries(report)) {
+    if (v !== undefined) {
+      try {
+        cleanData[k] = JSON.parse(JSON.stringify(v));
+      } catch {
+        cleanData[k] = String(v);
+      }
+    }
+  }
+
+  const key = `datalens_reports_${report.ownerId}`;
+  try {
+    const existing = JSON.parse(getLocalStorageItem(key) || '[]');
+    const filtered = existing.filter((r: any) => (r.reportId || r.id) !== report.reportId);
+    filtered.unshift(cleanData);
+    setLocalStorageItem(key, JSON.stringify(filtered.slice(0, 50)));
+  } catch {
+    // ignore
+  }
+
+  if (!isFirebaseConfigured || !db) return;
+
+  const path = `reports/${report.reportId}`;
+  try {
+    const docRef = doc(db, 'reports', report.reportId);
+    await setDoc(docRef, cleanData, { merge: true });
+  } catch (err: any) {
+    handleFirestoreError('saveReportRecord', path, err);
+  }
+}
+
+/**
+ * Deletes a report record from Firestore and local cache.
+ */
+export async function deleteReportRecord(reportId: string, ownerId: string): Promise<void> {
+  if (!reportId || !ownerId) return;
+
+  const key = `datalens_reports_${ownerId}`;
+  try {
+    const existing = JSON.parse(getLocalStorageItem(key) || '[]');
+    const filtered = existing.filter((r: any) => (r.reportId || r.id) !== reportId);
+    setLocalStorageItem(key, JSON.stringify(filtered));
+  } catch {
+    // ignore
+  }
+
+  if (!isFirebaseConfigured || !db) return;
+
+  const path = `reports/${reportId}`;
+  try {
+    const docRef = doc(db, 'reports', reportId);
+    await deleteDoc(docRef);
+  } catch (err: any) {
+    handleFirestoreError('deleteReportRecord', path, err);
+  }
 }
