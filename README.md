@@ -3,6 +3,12 @@
 > **Tagline:** Turn data into decisions.  
 > **Architecture:** Deterministic Analytics & ML Engine + Generative AI Reasoning (Gemini) + Multi-Tier Persistence (Cloud Firestore, Server Runtime Storage, Local Cache).
 
+## 🚀 Live Demo
+
+**Try DataLens AI:** https://datalens-ai-topaz.vercel.app/
+
+---
+
 DataLens AI is an autonomous AI data analyst platform designed to transform raw tabular datasets (CSV, TSV, XLSX) into actionable insights, interactive statistical visualizations, predictive machine learning models, and executive analyst reports. It bridges the gap between natural language reasoning and deterministic mathematical computation by separating analytical calculations from LLM interpretation.
 
 ---
