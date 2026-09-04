@@ -1,0 +1,597 @@
+{
+  "datasetId": "ds_car_dekho_test",
+  "ownerId": "usr_car_analyst_001",
+  "fileName": "Car Market Trends Analysis with Car Dekho Data.csv",
+  "fileType": "csv",
+  "fileSizeBytes": 1766,
+  "rowCount": 20,
+  "columnCount": 9,
+  "duplicateRowCount": 0,
+  "duplicateRowPercentage": 0,
+  "missingValueCount": 0,
+  "missingDataPercentage": 0,
+  "columnsWithMissingValues": 0,
+  "dataQualityScore": 100,
+  "dataQualityExplanation": "High-quality dataset: Clean structure with 0% missing cells and 0% duplicate rows.",
+  "columns": [
+    {
+      "name": "name",
+      "normalizedName": "name",
+      "logicalType": "categorical",
+      "pandasDtype": "object",
+      "nullCount": 0,
+      "nullPercentage": 0,
+      "uniqueCount": 20,
+      "sampleValues": [
+        "Maruti Swift Dzire VDI",
+        "Skoda Rapid 1.5 TDI Ambition",
+        "Honda City 2017-2020 EXi",
+        "Hyundai i20 Sportz Diesel",
+        "Maruti Swift VXI BSIII",
+        "Hyundai Verna 1.6 SX",
+        "Maruti Wagon R LXI DUO BSIII",
+        "Toyota Corolla Altis D-4D GL"
+      ],
+      "statistics": null,
+      "topValues": [
+        {
+          "value": "Maruti Swift Dzire VDI",
+          "count": 1,
+          "percentage": 5
+        },
+        {
+          "value": "Skoda Rapid 1.5 TDI Ambition",
+          "count": 1,
+          "percentage": 5
+        },
+        {
+          "value": "Honda City 2017-2020 EXi",
+          "count": 1,
+          "percentage": 5
+        },
+        {
+          "value": "Hyundai i20 Sportz Diesel",
+          "count": 1,
+          "percentage": 5
+        },
+        {
+          "value": "Maruti Swift VXI BSIII",
+          "count": 1,
+          "percentage": 5
+        },
+        {
+          "value": "Hyundai Verna 1.6 SX",
+          "count": 1,
+          "percentage": 5
+        },
+        {
+          "value": "Maruti Wagon R LXI DUO BSIII",
+          "count": 1,
+          "percentage": 5
+        },
+        {
+          "value": "Toyota Corolla Altis D-4D GL",
+          "count": 1,
+          "percentage": 5
+        },
+        {
+          "value": "Hyundai Creta 1.6 CRDi SX Option",
+          "count": 1,
+          "percentage": 5
+        },
+        {
+          "value": "Ford EcoSport 1.5 Diesel Titanium BSIV",
+          "count": 1,
+          "percentage": 5
+        }
+      ],
+      "isDateTimeCandidate": false,
+      "isPotentialTarget": false,
+      "targetReason": null
+    },
+    {
+      "name": "year",
+      "normalizedName": "year",
+      "logicalType": "numeric",
+      "pandasDtype": "int64",
+      "nullCount": 0,
+      "nullPercentage": 0,
+      "uniqueCount": 11,
+      "sampleValues": [
+        "2014",
+        "2006",
+        "2010",
+        "2007",
+        "2012",
+        "2011",
+        "2019",
+        "2017"
+      ],
+      "statistics": {
+        "min": 2006,
+        "max": 2019,
+        "mean": 2014,
+        "median": 2014,
+        "std": 3.9337,
+        "q25": 2011,
+        "q75": 2018
+      },
+      "topValues": null,
+      "isDateTimeCandidate": false,
+      "isPotentialTarget": false,
+      "targetReason": null
+    },
+    {
+      "name": "selling_price",
+      "normalizedName": "selling_price",
+      "logicalType": "numeric",
+      "pandasDtype": "int64",
+      "nullCount": 0,
+      "nullPercentage": 0,
+      "uniqueCount": 20,
+      "sampleValues": [
+        "450000",
+        "370000",
+        "158000",
+        "225000",
+        "130000",
+        "440000",
+        "96000",
+        "500000"
+      ],
+      "statistics": {
+        "min": 96000,
+        "max": 4000000,
+        "mean": 1040450,
+        "median": 465000,
+        "std": 1252008.5116,
+        "q25": 350000,
+        "q75": 1400000
+      },
+      "topValues": null,
+      "isDateTimeCandidate": false,
+      "isPotentialTarget": true,
+      "targetReason": "Column name contains target indicator keyword 'price'."
+    },
+    {
+      "name": "km_driven",
+      "normalizedName": "km_driven",
+      "logicalType": "numeric",
+      "pandasDtype": "int64",
+      "nullCount": 0,
+      "nullPercentage": 0,
+      "uniqueCount": 18,
+      "sampleValues": [
+        "145500",
+        "120000",
+        "140000",
+        "127000",
+        "60000",
+        "175000",
+        "41000",
+        "68000"
+      ],
+      "statistics": {
+        "min": 25000,
+        "max": 175000,
+        "mean": 84075,
+        "median": 75000,
+        "std": 45131.4673,
+        "q25": 41000,
+        "q75": 120000
+      },
+      "topValues": null,
+      "isDateTimeCandidate": false,
+      "isPotentialTarget": false,
+      "targetReason": null
+    },
+    {
+      "name": "fuel",
+      "normalizedName": "fuel",
+      "logicalType": "categorical",
+      "pandasDtype": "object",
+      "nullCount": 0,
+      "nullPercentage": 0,
+      "uniqueCount": 3,
+      "sampleValues": [
+        "Diesel",
+        "Petrol",
+        "LPG"
+      ],
+      "statistics": null,
+      "topValues": [
+        {
+          "value": "Diesel",
+          "count": 13,
+          "percentage": 65
+        },
+        {
+          "value": "Petrol",
+          "count": 6,
+          "percentage": 30
+        },
+        {
+          "value": "LPG",
+          "count": 1,
+          "percentage": 5
+        }
+      ],
+      "isDateTimeCandidate": false,
+      "isPotentialTarget": false,
+      "targetReason": null
+    },
+    {
+      "name": "seller_type",
+      "normalizedName": "seller_type",
+      "logicalType": "categorical",
+      "pandasDtype": "object",
+      "nullCount": 0,
+      "nullPercentage": 0,
+      "uniqueCount": 2,
+      "sampleValues": [
+        "Individual",
+        "Dealer"
+      ],
+      "statistics": null,
+      "topValues": [
+        {
+          "value": "Individual",
+          "count": 16,
+          "percentage": 80
+        },
+        {
+          "value": "Dealer",
+          "count": 4,
+          "percentage": 20
+        }
+      ],
+      "isDateTimeCandidate": false,
+      "isPotentialTarget": false,
+      "targetReason": null
+    },
+    {
+      "name": "transmission",
+      "normalizedName": "transmission",
+      "logicalType": "categorical",
+      "pandasDtype": "object",
+      "nullCount": 0,
+      "nullPercentage": 0,
+      "uniqueCount": 2,
+      "sampleValues": [
+        "Manual",
+        "Automatic"
+      ],
+      "statistics": null,
+      "topValues": [
+        {
+          "value": "Manual",
+          "count": 15,
+          "percentage": 75
+        },
+        {
+          "value": "Automatic",
+          "count": 5,
+          "percentage": 25
+        }
+      ],
+      "isDateTimeCandidate": false,
+      "isPotentialTarget": false,
+      "targetReason": null
+    },
+    {
+      "name": "owner",
+      "normalizedName": "owner",
+      "logicalType": "categorical",
+      "pandasDtype": "object",
+      "nullCount": 0,
+      "nullPercentage": 0,
+      "uniqueCount": 3,
+      "sampleValues": [
+        "First Owner",
+        "Second Owner",
+        "Third Owner"
+      ],
+      "statistics": null,
+      "topValues": [
+        {
+          "value": "First Owner",
+          "count": 16,
+          "percentage": 80
+        },
+        {
+          "value": "Second Owner",
+          "count": 3,
+          "percentage": 15
+        },
+        {
+          "value": "Third Owner",
+          "count": 1,
+          "percentage": 5
+        }
+      ],
+      "isDateTimeCandidate": false,
+      "isPotentialTarget": false,
+      "targetReason": null
+    },
+    {
+      "name": "seats",
+      "normalizedName": "seats",
+      "logicalType": "numeric",
+      "pandasDtype": "int64",
+      "nullCount": 0,
+      "nullPercentage": 0,
+      "uniqueCount": 2,
+      "sampleValues": [
+        "5",
+        "7"
+      ],
+      "statistics": {
+        "min": 5,
+        "max": 7,
+        "mean": 5.2,
+        "median": 5,
+        "std": 0.6156,
+        "q25": 5,
+        "q75": 5
+      },
+      "topValues": null,
+      "isDateTimeCandidate": false,
+      "isPotentialTarget": true,
+      "targetReason": "Last numerical column in dataset structure."
+    }
+  ],
+  "numericColumns": [
+    "year",
+    "selling_price",
+    "km_driven",
+    "seats"
+  ],
+  "categoricalColumns": [
+    "name",
+    "fuel",
+    "seller_type",
+    "transmission",
+    "owner"
+  ],
+  "textColumns": [],
+  "booleanColumns": [],
+  "datetimeColumns": [],
+  "potentialTargets": [
+    {
+      "columnName": "selling_price",
+      "logicalType": "numeric",
+      "reason": "Column name contains target indicator keyword 'price'.",
+      "confidence": "high"
+    },
+    {
+      "columnName": "seats",
+      "logicalType": "numeric",
+      "reason": "Last numerical column in dataset structure.",
+      "confidence": "medium"
+    }
+  ],
+  "previewRows": [
+    {
+      "name": "Maruti Swift Dzire VDI",
+      "year": "2014",
+      "selling_price": "450000",
+      "km_driven": "145500",
+      "fuel": "Diesel",
+      "seller_type": "Individual",
+      "transmission": "Manual",
+      "owner": "First Owner",
+      "seats": "5"
+    },
+    {
+      "name": "Skoda Rapid 1.5 TDI Ambition",
+      "year": "2014",
+      "selling_price": "370000",
+      "km_driven": "120000",
+      "fuel": "Diesel",
+      "seller_type": "Individual",
+      "transmission": "Manual",
+      "owner": "Second Owner",
+      "seats": "5"
+    },
+    {
+      "name": "Honda City 2017-2020 EXi",
+      "year": "2006",
+      "selling_price": "158000",
+      "km_driven": "140000",
+      "fuel": "Petrol",
+      "seller_type": "Individual",
+      "transmission": "Manual",
+      "owner": "Third Owner",
+      "seats": "5"
+    },
+    {
+      "name": "Hyundai i20 Sportz Diesel",
+      "year": "2010",
+      "selling_price": "225000",
+      "km_driven": "127000",
+      "fuel": "Diesel",
+      "seller_type": "Individual",
+      "transmission": "Manual",
+      "owner": "First Owner",
+      "seats": "5"
+    },
+    {
+      "name": "Maruti Swift VXI BSIII",
+      "year": "2007",
+      "selling_price": "130000",
+      "km_driven": "120000",
+      "fuel": "Petrol",
+      "seller_type": "Individual",
+      "transmission": "Manual",
+      "owner": "First Owner",
+      "seats": "5"
+    },
+    {
+      "name": "Hyundai Verna 1.6 SX",
+      "year": "2012",
+      "selling_price": "440000",
+      "km_driven": "60000",
+      "fuel": "Diesel",
+      "seller_type": "Individual",
+      "transmission": "Manual",
+      "owner": "First Owner",
+      "seats": "5"
+    },
+    {
+      "name": "Maruti Wagon R LXI DUO BSIII",
+      "year": "2010",
+      "selling_price": "96000",
+      "km_driven": "175000",
+      "fuel": "LPG",
+      "seller_type": "Individual",
+      "transmission": "Manual",
+      "owner": "First Owner",
+      "seats": "5"
+    },
+    {
+      "name": "Toyota Corolla Altis D-4D GL",
+      "year": "2011",
+      "selling_price": "500000",
+      "km_driven": "120000",
+      "fuel": "Diesel",
+      "seller_type": "Individual",
+      "transmission": "Manual",
+      "owner": "First Owner",
+      "seats": "5"
+    },
+    {
+      "name": "Hyundai Creta 1.6 CRDi SX Option",
+      "year": "2019",
+      "selling_price": "1400000",
+      "km_driven": "41000",
+      "fuel": "Diesel",
+      "seller_type": "Individual",
+      "transmission": "Manual",
+      "owner": "First Owner",
+      "seats": "5"
+    },
+    {
+      "name": "Ford EcoSport 1.5 Diesel Titanium BSIV",
+      "year": "2017",
+      "selling_price": "700000",
+      "km_driven": "68000",
+      "fuel": "Diesel",
+      "seller_type": "Individual",
+      "transmission": "Manual",
+      "owner": "First Owner",
+      "seats": "5"
+    },
+    {
+      "name": "Hyundai Grand i10 Magna",
+      "year": "2014",
+      "selling_price": "350000",
+      "km_driven": "45000",
+      "fuel": "Petrol",
+      "seller_type": "Individual",
+      "transmission": "Manual",
+      "owner": "First Owner",
+      "seats": "5"
+    },
+    {
+      "name": "BMW 5 Series 520d Luxury Line",
+      "year": "2018",
+      "selling_price": "3400000",
+      "km_driven": "35000",
+      "fuel": "Diesel",
+      "seller_type": "Dealer",
+      "transmission": "Automatic",
+      "owner": "First Owner",
+      "seats": "5"
+    },
+    {
+      "name": "Toyota Fortuner 2.8 4x2 AT",
+      "year": "2017",
+      "selling_price": "2600000",
+      "km_driven": "70000",
+      "fuel": "Diesel",
+      "seller_type": "Dealer",
+      "transmission": "Automatic",
+      "owner": "First Owner",
+      "seats": "7"
+    },
+    {
+      "name": "Mahindra Scorpio S10 7 Seater",
+      "year": "2015",
+      "selling_price": "820000",
+      "km_driven": "80000",
+      "fuel": "Diesel",
+      "seller_type": "Individual",
+      "transmission": "Manual",
+      "owner": "First Owner",
+      "seats": "7"
+    },
+    {
+      "name": "Honda Civic 1.8V AT",
+      "year": "2011",
+      "selling_price": "280000",
+      "km_driven": "90000",
+      "fuel": "Petrol",
+      "seller_type": "Individual",
+      "transmission": "Automatic",
+      "owner": "Second Owner",
+      "seats": "5"
+    },
+    {
+      "name": "Tata Tiago 1.2 Revotron XZ",
+      "year": "2018",
+      "selling_price": "480000",
+      "km_driven": "32000",
+      "fuel": "Petrol",
+      "seller_type": "Individual",
+      "transmission": "Manual",
+      "owner": "First Owner",
+      "seats": "5"
+    },
+    {
+      "name": "Audi A6 35 TDI Matrix",
+      "year": "2019",
+      "selling_price": "4000000",
+      "km_driven": "25000",
+      "fuel": "Diesel",
+      "seller_type": "Dealer",
+      "transmission": "Automatic",
+      "owner": "First Owner",
+      "seats": "5"
+    },
+    {
+      "name": "Mercedes-Benz E-Class E220d",
+      "year": "2017",
+      "selling_price": "3500000",
+      "km_driven": "40000",
+      "fuel": "Diesel",
+      "seller_type": "Dealer",
+      "transmission": "Automatic",
+      "owner": "First Owner",
+      "seats": "5"
+    },
+    {
+      "name": "Maruti Baleno Delta 1.2",
+      "year": "2018",
+      "selling_price": "530000",
+      "km_driven": "38000",
+      "fuel": "Petrol",
+      "seller_type": "Individual",
+      "transmission": "Manual",
+      "owner": "First Owner",
+      "seats": "5"
+    },
+    {
+      "name": "Renault Duster 85PS Diesel RxL",
+      "year": "2013",
+      "selling_price": "380000",
+      "km_driven": "110000",
+      "fuel": "Diesel",
+      "seller_type": "Individual",
+      "transmission": "Manual",
+      "owner": "Second Owner",
+      "seats": "5"
+    }
+  ],
+  "createdAt": "2026-09-04T11:19:22.445Z",
+  "profileStatus": "ready"
+}

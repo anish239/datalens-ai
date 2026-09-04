@@ -1,0 +1,152 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper function to check if user is authenticated
+    function isAuthenticated() {
+      return request.auth != null && request.auth.uid != null;
+    }
+    
+    // Helper function to check if user is the resource owner
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    // User profiles: users/{uid}
+    // Users can read, create, and update only their own profile
+    // Client-side direct deletion is disallowed for account safety
+    match /users/{uid} {
+      allow read: if isOwner(uid);
+      allow create: if isOwner(uid) && request.resource.data.uid == uid;
+      allow update: if isOwner(uid) && request.resource.data.uid == uid;
+      allow delete: if false;
+
+      // Nested user resources: users/{uid}/conversations/{conversationId}
+      match /conversations/{conversationId} {
+        allow read, delete: if isOwner(uid) && resource.data.ownerId == uid;
+        allow create: if isOwner(uid) 
+          && request.resource.data.ownerId is string 
+          && request.resource.data.ownerId == uid;
+        allow update: if isOwner(uid) 
+          && resource.data.ownerId == uid 
+          && request.resource.data.ownerId == uid;
+
+        match /messages/{messageId} {
+          allow read, delete: if isOwner(uid) && resource.data.ownerId == uid;
+          allow create: if isOwner(uid) 
+            && request.resource.data.ownerId is string 
+            && request.resource.data.ownerId == uid;
+          allow update: if isOwner(uid) 
+            && resource.data.ownerId == uid 
+            && request.resource.data.ownerId == uid;
+        }
+      }
+
+      // Nested user datasets: users/{uid}/datasets/{datasetId}
+      match /datasets/{datasetId} {
+        allow read, delete: if isOwner(uid) && resource.data.ownerId == uid;
+        allow create: if isOwner(uid) 
+          && request.resource.data.ownerId is string 
+          && request.resource.data.ownerId == uid;
+        allow update: if isOwner(uid) 
+          && resource.data.ownerId == uid 
+          && request.resource.data.ownerId == uid;
+      }
+
+      // Nested user analyses: users/{uid}/analyses/{analysisId}
+      match /analyses/{analysisId} {
+        allow read, delete: if isOwner(uid) && resource.data.ownerId == uid;
+        allow create: if isOwner(uid) 
+          && request.resource.data.ownerId is string 
+          && request.resource.data.ownerId == uid;
+        allow update: if isOwner(uid) 
+          && resource.data.ownerId == uid 
+          && request.resource.data.ownerId == uid;
+      }
+
+      // Nested user reports: users/{uid}/reports/{reportId}
+      match /reports/{reportId} {
+        allow read, delete: if isOwner(uid) && resource.data.ownerId == uid;
+        allow create: if isOwner(uid) 
+          && request.resource.data.ownerId is string 
+          && request.resource.data.ownerId == uid;
+        allow update: if isOwner(uid) 
+          && resource.data.ownerId == uid 
+          && request.resource.data.ownerId == uid;
+      }
+    }
+
+    // Projects: projects/{projectId}
+    match /projects/{projectId} {
+      allow read, delete: if isAuthenticated() && resource.data.ownerId == request.auth.uid;
+      allow create: if isAuthenticated() 
+        && request.resource.data.ownerId is string 
+        && request.resource.data.ownerId == request.auth.uid;
+      allow update: if isAuthenticated() 
+        && resource.data.ownerId == request.auth.uid 
+        && request.resource.data.ownerId == request.auth.uid;
+    }
+
+    // Datasets: datasets/{datasetId}
+    match /datasets/{datasetId} {
+      allow read, delete: if isAuthenticated() && resource.data.ownerId == request.auth.uid;
+      allow create: if isAuthenticated() 
+        && request.resource.data.ownerId is string 
+        && request.resource.data.ownerId == request.auth.uid;
+      allow update: if isAuthenticated() 
+        && resource.data.ownerId == request.auth.uid 
+        && request.resource.data.ownerId == request.auth.uid;
+    }
+
+    // Analyses: analyses/{analysisId}
+    match /analyses/{analysisId} {
+      allow read, delete: if isAuthenticated() && resource.data.ownerId == request.auth.uid;
+      allow create: if isAuthenticated() 
+        && request.resource.data.ownerId is string 
+        && request.resource.data.ownerId == request.auth.uid;
+      allow update: if isAuthenticated() 
+        && resource.data.ownerId == request.auth.uid 
+        && request.resource.data.ownerId == request.auth.uid;
+    }
+
+    // Reports: reports/{reportId}
+    match /reports/{reportId} {
+      allow read, delete: if isAuthenticated() && resource.data.ownerId == request.auth.uid;
+      allow create: if isAuthenticated() 
+        && request.resource.data.ownerId is string 
+        && request.resource.data.ownerId == request.auth.uid;
+      allow update: if isAuthenticated() 
+        && resource.data.ownerId == request.auth.uid 
+        && request.resource.data.ownerId == request.auth.uid;
+    }
+
+    // AI Conversations: conversations/{conversationId}
+    match /conversations/{conversationId} {
+      allow read, delete: if isAuthenticated() && resource.data.ownerId == request.auth.uid;
+      allow create: if isAuthenticated() 
+        && request.resource.data.ownerId is string 
+        && request.resource.data.ownerId == request.auth.uid;
+      allow update: if isAuthenticated() 
+        && resource.data.ownerId == request.auth.uid 
+        && request.resource.data.ownerId == request.auth.uid;
+
+      // Subcollection: conversations/{conversationId}/messages/{messageId}
+      match /messages/{messageId} {
+        allow read, delete: if isAuthenticated() && resource.data.ownerId == request.auth.uid;
+        allow create: if isAuthenticated() 
+          && request.resource.data.ownerId is string 
+          && request.resource.data.ownerId == request.auth.uid;
+        allow update: if isAuthenticated() 
+          && resource.data.ownerId == request.auth.uid 
+          && request.resource.data.ownerId == request.auth.uid;
+      }
+    }
+
+    // Explicitly reject all other document paths by default
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
+

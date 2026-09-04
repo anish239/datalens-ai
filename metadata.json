@@ -1,0 +1,6 @@
+{
+  "name": "DataLens AI",
+  "description": "Autonomous AI data analyst SaaS platform to understand datasets, perform exploratory data analysis, discover patterns, and turn complex data into actionable insights.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

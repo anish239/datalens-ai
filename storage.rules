@@ -1,0 +1,38 @@
+rules_version = '2';
+
+service firebase.storage {
+  match /b/{bucket}/o {
+    
+    // Helper function to check if user is authenticated
+    function isAuthenticated() {
+      return request.auth != null && request.auth.uid != null;
+    }
+
+    // Datasets storage path: users/{uid}/datasets/{datasetId}/{fileName}
+    // Strict isolation: users can only read, upload, and delete their own files.
+    // Uploads must enforce size (<= 50MB) and valid dataset extensions.
+    match /users/{uid}/datasets/{datasetId}/{fileName} {
+      allow read: if isAuthenticated() && request.auth.uid == uid;
+      
+      allow create: if isAuthenticated() 
+        && request.auth.uid == uid
+        && request.resource.size > 0 
+        && request.resource.size <= 52428800 // 50MB (50 * 1024 * 1024)
+        && fileName.matches('.*\\.(csv|xlsx|xls|CSV|XLSX|XLS)$');
+
+      allow update: if isAuthenticated() 
+        && request.auth.uid == uid
+        && request.resource.size > 0 
+        && request.resource.size <= 52428800
+        && fileName.matches('.*\\.(csv|xlsx|xls|CSV|XLSX|XLS)$');
+
+      allow delete: if isAuthenticated() && request.auth.uid == uid;
+    }
+
+    // Explicitly reject all other storage paths
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}
+

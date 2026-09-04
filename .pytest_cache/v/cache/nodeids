@@ -1,0 +1,15 @@
+[
+  "backend/tests/test_auth.py::test_invalid_token_format_rejected",
+  "backend/tests/test_auth.py::test_unauthenticated_request_rejected",
+  "backend/tests/test_auth.py::test_valid_token_authenticated",
+  "backend/tests/test_ingestion.py::test_csv_upload_success",
+  "backend/tests/test_ingestion.py::test_empty_dataset_rejected",
+  "backend/tests/test_ingestion.py::test_unsupported_file_extension_rejected",
+  "backend/tests/test_ingestion.py::test_xlsx_upload_success",
+  "backend/tests/test_profiling.py::test_missing_values_and_duplicates_calculation",
+  "backend/tests/test_profiling.py::test_numeric_statistics_calculation",
+  "backend/tests/test_profiling.py::test_potential_target_identification",
+  "backend/tests/test_profiling.py::test_schema_logical_type_inference",
+  "backend/tests/test_security.py::test_user_a_cannot_access_user_b_dataset",
+  "backend/tests/test_security.py::test_user_a_cannot_delete_user_b_dataset"
+]
